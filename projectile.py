@@ -84,6 +84,7 @@ start_color = pg.Color('green')
 stop_color = pg.Color('red')
 
 running = False
+stop = False
 
 while True:
 
@@ -109,6 +110,7 @@ while True:
             # check if start/stop button is clicked
             if start_button.collidepoint(event.pos):
                 running = True
+                # stop = False
             if stop_button.collidepoint(event.pos):
                 running = False
         if event.type == KEYDOWN:
@@ -129,7 +131,7 @@ while True:
     pg.draw.rect(screen, start_color, start_button)
     pg.draw.rect(screen, stop_color, stop_button)
     start_text = font.render('Start', True, (255, 255, 255))
-    stop_text = font.render('Stop', True, (255, 255, 255))
+    stop_text = font.render('Clear', True, (255, 255, 255))
     screen.blit(start_text, (start_button.x+10, start_button.y+10))
     screen.blit(stop_text, (stop_button.x+10, stop_button.y+10))
 
@@ -148,6 +150,38 @@ while True:
         if (posY-y >= win_y+55):
             pg.quit()
             exit()
+    # if stop:
+    #     while (running != True):
+    #         pg.draw.circle(screen,(255,0,0),(posX+x,posY-y),20)
+    #     for event in pg.event.get():
+    #         if event.type == pg.QUIT:
+    #             pg.quit()
+    #             exit()
+    #         if event.type == MOUSEBUTTONDOWN:
+    #             if input_rect.collidepoint(event.pos):
+    #                 active = True
+    #             else:
+    #                 active = False
+    #             color = color_active if active else color_inactive
+    #             # check if start/stop button is clicked
+    #             if start_button.collidepoint(event.pos):
+    #                 running = True
+    #             if stop_button.collidepoint(event.pos):
+    #                 stop = True
+    #         if event.type == KEYDOWN:
+    #             if active:
+    #                 if event.key == K_a:
+    #                     try:
+    #                         theta = int(text)
+                            
+    #                     except ValueError:
+    #                         pass
+    #                     text = ''
+    #                 elif event.key == K_BACKSPACE:
+    #                     text = text[:-1]
+    #                 else:
+    #                     text += event.unicode
+
 
     pg.time.delay(50) #หน่
     pg.display.update()
